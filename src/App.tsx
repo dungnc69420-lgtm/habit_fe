@@ -33,7 +33,7 @@ const App: React.FC = () => {
         <header className="header">
           <div className="header-accent" />
           <h1 className="app-title">
-            <span className="title-todo">todo</span>
+            <span className="title-todo">habit tracker</span>
             <span className="title-dot">.</span>
           </h1>
           <p className="app-subtitle">Stay focused. Get things done.</p>
