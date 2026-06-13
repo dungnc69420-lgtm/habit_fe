@@ -1,0 +1,319 @@
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
+import '../../../styles/Auth.css';
+
+const GoogleIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path
+            d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"
+            fill="#4285F4"
+        />
+        <path
+            d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"
+            fill="#34A853"
+        />
+        <path
+            d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"
+            fill="#FBBC05"
+        />
+        <path
+            d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"
+            fill="#EA4335"
+        />
+    </svg>
+);
+
+interface RegisterForm {
+    name: string;
+    email: string;
+    password: string;
+    confirm: string;
+}
+
+interface FormErrors {
+    name?: string;
+    email?: string;
+    password?: string;
+    confirm?: string;
+}
+
+export default function Register(): JSX.Element {
+    const { register } = useAuth();
+    const navigate = useNavigate();
+
+    const [form, setForm] = useState<RegisterForm>({
+        name: '',
+        email: '',
+        password: '',
+        confirm: '',
+    });
+
+    const [errors, setErrors] = useState<FormErrors>({});
+    const [apiError, setApiError] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const setField = (
+        key: keyof RegisterForm,
+        value: string
+    ): void => {
+        setForm(prev => ({
+            ...prev,
+            [key]: value,
+        }));
+
+        setErrors(prev => ({
+            ...prev,
+            [key]: undefined,
+        }));
+
+        setApiError('');
+    };
+
+    const validate = (): FormErrors => {
+        const validationErrors: FormErrors = {};
+
+        if (!form.name.trim()) {
+            validationErrors.name = 'Name is required';
+        }
+
+        if (!form.email) {
+            validationErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+            validationErrors.email = 'Enter a valid email';
+        }
+
+        if (!form.password) {
+            validationErrors.password = 'Password is required';
+        } else if (form.password.length < 8) {
+            validationErrors.password = 'At least 8 characters';
+        }
+
+        if (form.password !== form.confirm) {
+            validationErrors.confirm = 'Passwords do not match';
+        }
+
+        return validationErrors;
+    };
+
+    const handleSubmit = async (
+        event: FormEvent<HTMLFormElement>
+    ): Promise<void> => {
+        event.preventDefault();
+
+        const validationErrors = validate();
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            await register(
+                form.name,
+                form.email,
+                form.password
+            );
+
+            navigate('/dashboard');
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setApiError(err.message);
+            } else {
+                setApiError('Registration failed');
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleGoogle = (): void => {
+        window.location.href =
+            `${process.env.REACT_APP_API_URL}/oauth2/authorization/google`;
+    };
+
+    return (
+        <div className="auth-page">
+            <div className="auth-logo">
+                Train<span>Wise</span>
+            </div>
+
+            <div className="auth-card">
+                <h1 className="auth-title">
+                    Start for free
+                </h1>
+
+                <button
+                    className="btn-google"
+                    onClick={handleGoogle}
+                    type="button"
+                >
+                    <GoogleIcon />
+                    Sign up with Google
+                </button>
+
+                <div className="auth-divider">or</div>
+
+                {apiError && (
+                    <div className="auth-error">
+                        {apiError}
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit} noValidate>
+                    <div className="form-group">
+                        <label htmlFor="name">
+                            Full name
+                        </label>
+
+                        <input
+                            id="name"
+                            type="text"
+                            placeholder="Alex Johnson"
+                            value={form.name}
+                            onChange={(
+                                e: ChangeEvent<HTMLInputElement>
+                            ) =>
+                                setField(
+                                    'name',
+                                    e.target.value
+                                )
+                            }
+                            className={
+                                errors.name
+                                    ? 'input-error'
+                                    : ''
+                            }
+                        />
+
+                        {errors.name && (
+                            <span className="field-error">
+                                {errors.name}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="email">
+                            Email
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="you@example.com"
+                            value={form.email}
+                            onChange={(
+                                e: ChangeEvent<HTMLInputElement>
+                            ) =>
+                                setField(
+                                    'email',
+                                    e.target.value
+                                )
+                            }
+                            className={
+                                errors.email
+                                    ? 'input-error'
+                                    : ''
+                            }
+                        />
+
+                        {errors.email && (
+                            <span className="field-error">
+                                {errors.email}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">
+                            Password
+                        </label>
+
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Min. 8 characters"
+                            value={form.password}
+                            onChange={(
+                                e: ChangeEvent<HTMLInputElement>
+                            ) =>
+                                setField(
+                                    'password',
+                                    e.target.value
+                                )
+                            }
+                            className={
+                                errors.password
+                                    ? 'input-error'
+                                    : ''
+                            }
+                        />
+
+                        {errors.password && (
+                            <span className="field-error">
+                                {errors.password}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="confirm">
+                            Confirm password
+                        </label>
+
+                        <input
+                            id="confirm"
+                            type="password"
+                            placeholder="••••••••"
+                            value={form.confirm}
+                            onChange={(
+                                e: ChangeEvent<HTMLInputElement>
+                            ) =>
+                                setField(
+                                    'confirm',
+                                    e.target.value
+                                )
+                            }
+                            className={
+                                errors.confirm
+                                    ? 'input-error'
+                                    : ''
+                            }
+                        />
+
+                        {errors.confirm && (
+                            <span className="field-error">
+                                {errors.confirm}
+                            </span>
+                        )}
+                    </div>
+
+                    <button
+                        className="btn-submit"
+                        type="submit"
+                        disabled={loading}
+                    >
+                        {loading ? (
+                            <>
+                                <div className="spinner" />
+                                Creating account...
+                            </>
+                        ) : (
+                            'Create account'
+                        )}
+                    </button>
+                </form>
+
+                <p className="auth-footer">
+                    Already a member?{' '}
+                    <Link to="/login">
+                        Log in
+                    </Link>
+                </p>
+            </div>
+        </div>
+    );
+}

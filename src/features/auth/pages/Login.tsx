@@ -1,0 +1,239 @@
+import { useState, ChangeEvent, FormEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
+import '../../../styles/Auth.css';
+
+const GoogleIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path
+            d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"
+            fill="#4285F4"
+        />
+        <path
+            d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"
+            fill="#34A853"
+        />
+        <path
+            d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"
+            fill="#FBBC05"
+        />
+        <path
+            d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"
+            fill="#EA4335"
+        />
+    </svg>
+);
+
+interface LoginForm {
+    email: string;
+    password: string;
+}
+
+interface FormErrors {
+    email?: string;
+    password?: string;
+}
+
+export default function Login(): JSX.Element {
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
+    const [form, setForm] = useState<LoginForm>({
+        email: '',
+        password: '',
+    });
+
+    const [errors, setErrors] = useState<FormErrors>({});
+    const [apiError, setApiError] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const setField = (
+        key: keyof LoginForm,
+        value: string
+    ): void => {
+        setForm(prev => ({
+            ...prev,
+            [key]: value,
+        }));
+
+        setErrors(prev => ({
+            ...prev,
+            [key]: '',
+        }));
+
+        setApiError('');
+    };
+
+    const validate = (): FormErrors => {
+        const validationErrors: FormErrors = {};
+
+        if (!form.email) {
+            validationErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+            validationErrors.email = 'Enter a valid email';
+        }
+
+        if (!form.password) {
+            validationErrors.password = 'Password is required';
+        }
+
+        return validationErrors;
+    };
+
+    const handleSubmit = async (
+        event: FormEvent<HTMLFormElement>
+    ): Promise<void> => {
+        event.preventDefault();
+
+        const validationErrors = validate();
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            await login(form.email, form.password);
+            navigate('/dashboard');
+        } catch (err: any) {
+            setApiError(
+                err?.message || 'Login failed'
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleGoogle = () => {
+        const apiUrl = process.env.REACT_APP_API_URL;
+
+        if (!apiUrl) {
+            alert("REACT_APP_API_URL is undefined");
+            return;
+        }
+
+        window.location.href = `${apiUrl}/oauth2/authorization/google`;
+    };
+
+    return (
+        <div className="auth-page">
+            <div className="auth-logo">
+                Habit<span>Tracker</span>
+            </div>
+
+            <div className="auth-card">
+                <h1 className="auth-title">Welcome back</h1>
+                <p className="auth-sub">
+                    Log in to continue.
+                </p>
+
+                <button
+                    className="btn-google"
+                    onClick={handleGoogle}
+                    type="button"
+                >
+                    <GoogleIcon />
+                    Continue with Google
+                </button>
+
+                <div className="auth-divider">or</div>
+
+                {apiError && (
+                    <div className="auth-error">
+                        {apiError}
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit} noValidate>
+                    <div className="form-group">
+                        <label htmlFor="email">
+                            Email
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="you@example.com"
+                            value={form.email}
+                            onChange={(
+                                e: ChangeEvent<HTMLInputElement>
+                            ) =>
+                                setField(
+                                    'email',
+                                    e.target.value
+                                )
+                            }
+                            className={
+                                errors.email
+                                    ? 'input-error'
+                                    : ''
+                            }
+                        />
+
+                        {errors.email && (
+                            <span className="field-error">
+                                {errors.email}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">
+                            Password
+                        </label>
+
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="••••••••"
+                            value={form.password}
+                            onChange={(
+                                e: ChangeEvent<HTMLInputElement>
+                            ) =>
+                                setField(
+                                    'password',
+                                    e.target.value
+                                )
+                            }
+                            className={
+                                errors.password
+                                    ? 'input-error'
+                                    : ''
+                            }
+                        />
+
+                        {errors.password && (
+                            <span className="field-error">
+                                {errors.password}
+                            </span>
+                        )}
+                    </div>
+
+                    <button
+                        className="btn-submit"
+                        type="submit"
+                        disabled={loading}
+                    >
+                        {loading ? (
+                            <>
+                                <div className="spinner" />
+                                Logging in...
+                            </>
+                        ) : (
+                            'Log in'
+                        )}
+                    </button>
+                </form>
+
+                <p className="auth-footer">
+                    No account?{' '}
+                    <Link to="/register">
+                        Create one free
+                    </Link>
+                </p>
+            </div>
+        </div>
+    );
+}
