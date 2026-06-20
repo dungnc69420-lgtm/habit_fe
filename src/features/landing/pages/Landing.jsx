@@ -20,7 +20,7 @@ export default function Landing() {
 
       {/* Nav */}
       <nav className="nav">
-        <span className="nav-logo">Train<span>Wise</span></span>
+        <span className="nav-logo">Habit<span>Tracker</span></span>
         <div className="nav-links">
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
@@ -41,8 +41,8 @@ export default function Landing() {
           no fluff, no guesswork, just a proven method that works.
         </p>
         <div className="hero-actions">
-          <Link to="/src/features/auth/pages/Register" className="btn-primary">Start 7-day free trial</Link>
-          <Link to="/src/features/auth/pages/Login" className="btn-ghost">Already a member →</Link>
+          <Link to="/register" className="btn-primary">Sign up</Link>
+          <Link to="/login" className="btn-ghost">Already a member →</Link>
         </div>
         <div className="hero-stats">
           <div><strong>10K+</strong><span>Members</span></div>
@@ -87,7 +87,7 @@ export default function Landing() {
 
       {/* Footer */}
       <footer className="footer">
-        <span>© 2026 TrainWise</span>
+        <span>© 2026 Habit Tracker</span>
         <div>
           <a href="#">Terms</a>
           <a href="#">Privacy</a>

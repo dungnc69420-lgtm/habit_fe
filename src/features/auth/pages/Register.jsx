@@ -1,6 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../context/AuthContext';
+import {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {useAuth} from '../../../context/AuthContext';
 import '../../../styles/Auth.css';
 
 const GoogleIcon = () => (
@@ -24,39 +24,25 @@ const GoogleIcon = () => (
     </svg>
 );
 
-interface RegisterForm {
-    name: string;
-    email: string;
-    password: string;
-    confirm: string;
-}
-
-interface FormErrors {
-    name?: string;
-    email?: string;
-    password?: string;
-    confirm?: string;
-}
-
-export default function Register(): JSX.Element {
-    const { register } = useAuth();
+export default function Register() {
+    const {register} = useAuth();
     const navigate = useNavigate();
 
-    const [form, setForm] = useState<RegisterForm>({
+    const [form, setForm] = useState({
         name: '',
         email: '',
         password: '',
         confirm: '',
     });
 
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [apiError, setApiError] = useState<string>('');
-    const [loading, setLoading] = useState<boolean>(false);
+    const [errors, setErrors] = useState({});
+    const [apiError, setApiError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const setField = (
-        key: keyof RegisterForm,
-        value: string
-    ): void => {
+        key,
+        value
+    ) => {
         setForm(prev => ({
             ...prev,
             [key]: value,
@@ -70,8 +56,8 @@ export default function Register(): JSX.Element {
         setApiError('');
     };
 
-    const validate = (): FormErrors => {
-        const validationErrors: FormErrors = {};
+    const validate = () => {
+        const validationErrors = {};
 
         if (!form.name.trim()) {
             validationErrors.name = 'Name is required';
@@ -96,9 +82,7 @@ export default function Register(): JSX.Element {
         return validationErrors;
     };
 
-    const handleSubmit = async (
-        event: FormEvent<HTMLFormElement>
-    ): Promise<void> => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const validationErrors = validate();
@@ -117,8 +101,8 @@ export default function Register(): JSX.Element {
                 form.password
             );
 
-            navigate('/dashboard');
-        } catch (err: unknown) {
+            navigate('/habit-tracker');
+        } catch (err) {
             if (err instanceof Error) {
                 setApiError(err.message);
             } else {
@@ -129,7 +113,7 @@ export default function Register(): JSX.Element {
         }
     };
 
-    const handleGoogle = (): void => {
+    const handleGoogle = () => {
         window.location.href =
             `${process.env.REACT_APP_API_URL}/oauth2/authorization/google`;
     };
@@ -150,7 +134,7 @@ export default function Register(): JSX.Element {
                     onClick={handleGoogle}
                     type="button"
                 >
-                    <GoogleIcon />
+                    <GoogleIcon/>
                     Sign up with Google
                 </button>
 
@@ -173,9 +157,7 @@ export default function Register(): JSX.Element {
                             type="text"
                             placeholder="Alex Johnson"
                             value={form.name}
-                            onChange={(
-                                e: ChangeEvent<HTMLInputElement>
-                            ) =>
+                            onChange={(e) =>
                                 setField(
                                     'name',
                                     e.target.value
@@ -205,9 +187,7 @@ export default function Register(): JSX.Element {
                             type="email"
                             placeholder="you@example.com"
                             value={form.email}
-                            onChange={(
-                                e: ChangeEvent<HTMLInputElement>
-                            ) =>
+                            onChange={(e) =>
                                 setField(
                                     'email',
                                     e.target.value
@@ -237,9 +217,7 @@ export default function Register(): JSX.Element {
                             type="password"
                             placeholder="Min. 8 characters"
                             value={form.password}
-                            onChange={(
-                                e: ChangeEvent<HTMLInputElement>
-                            ) =>
+                            onChange={(e) =>
                                 setField(
                                     'password',
                                     e.target.value
@@ -269,9 +247,7 @@ export default function Register(): JSX.Element {
                             type="password"
                             placeholder="••••••••"
                             value={form.confirm}
-                            onChange={(
-                                e: ChangeEvent<HTMLInputElement>
-                            ) =>
+                            onChange={(e) =>
                                 setField(
                                     'confirm',
                                     e.target.value
@@ -298,7 +274,7 @@ export default function Register(): JSX.Element {
                     >
                         {loading ? (
                             <>
-                                <div className="spinner" />
+                                <div className="spinner"/>
                                 Creating account...
                             </>
                         ) : (
@@ -309,7 +285,7 @@ export default function Register(): JSX.Element {
 
                 <p className="auth-footer">
                     Already a member?{' '}
-                    <Link to="/login">
+                    <Link to="/src/features/auth/pages/Login">
                         Log in
                     </Link>
                 </p>

@@ -26,7 +26,7 @@ export function OAuth2Callback() {
 
     useEffect(() => {
         if (user) {
-            navigate('/dashboard', { replace: true });
+            navigate('/habit-tracker', { replace: true });
         }
     }, [user, navigate]);
 

@@ -1,0 +1,702 @@
+/* ===========================
+   PAGE
+=========================== */
+
+.page {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    padding: 24px;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.header {
+    max-width: 840px;
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.backBtn {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 10px;
+    border: 1px solid var(--border);
+
+    background: var(--surface);
+    color: white;
+
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.headerTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.avatar {
+    font-size: 24px;
+}
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.content {
+    max-width: 840px;
+    margin: 0 auto;
+}
+
+.section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    padding: 14px 18px;
+    margin-bottom: 14px;
+}
+
+.sectionCompact {
+    padding: 8px 16px;
+}
+
+.sectionTitle {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* ===========================
+   BASIC INFO
+=========================== */
+
+.nameRow {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+}
+
+.iconPicker {
+    width: 82px;
+    height: 82px;
+
+    border-radius: 16px;
+    border: 2px dashed #ff5d7d;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.iconDisplay {
+    font-size: 36px;
+}
+
+.nameFields {
+    flex: 1;
+}
+
+.nameInput {
+    width: 100%;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+
+    color: white;
+    font-size: 22px;
+
+    padding: 8px 0;
+    outline: none;
+}
+
+.descInput {
+    width: 100%;
+
+    background: transparent;
+    border: none;
+
+    color: var(--muted);
+    font-size: 14px;
+
+    padding-top: 10px;
+    padding-bottom: 18px;
+
+    outline: none;
+}
+
+/* ===========================
+   ROWS
+=========================== */
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 48px;
+    padding: 12px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.rowCompact {
+    min-height: 42px;
+    padding: 18px 0 0 0;
+}
+
+.rowTight {
+    min-height: 36px;
+    padding: 4px 0;
+}
+
+.rowRight {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.noBorder {
+    border-bottom: none;
+}
+
+.rowLeft {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rowLabel {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.rowValue {
+    font-size: 15px;
+    color: var(--muted);
+}
+
+.rowArrow {
+    color: var(--muted);
+    font-size: 28px;
+    line-height: 1;
+}
+
+.rowHint {
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.08);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* ===========================
+   COLORS
+=========================== */
+
+.colorPreview {
+    width: 60px;
+    height: 24px;
+    border-radius: 999px;
+}
+
+.colorRow {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.colorDot {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+    border: none;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.colorDot:hover {
+    transform: scale(1.05);
+}
+
+.colorDotActive {
+    outline: 3px solid white;
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.detailGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+/* ===========================
+   GOALS
+=========================== */
+
+.goalRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.goalInputWrap {
+    display: flex;
+    gap: 10px;
+}
+
+.goalInput,
+.goalSelect {
+    padding: 8px 12px;
+
+    border-radius: 10px;
+    border: 1px solid var(--border);
+
+    background: #1f2430;
+    color: white;
+}
+
+.goalInput {
+    width: 110px;
+}
+
+.goalSummary {
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* ===========================
+   DAYS / CHIPS
+=========================== */
+
+.daysRow,
+.timeRangeRow {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.dayBtn,
+.timeBtn {
+    border: 1px solid var(--border);
+
+    background: #1f2430;
+    color: var(--muted);
+
+    border-radius: 999px;
+
+    padding: 7px 14px;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.dayBtnActive,
+.timeBtnActive {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+/* ===========================
+   TOGGLE
+=========================== */
+
+.toggle {
+    width: 56px;
+    height: 30px;
+
+    border-radius: 999px;
+    border: none;
+
+    background: #374151;
+
+    position: relative;
+    cursor: pointer;
+}
+
+.toggleThumb {
+    position: absolute;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+    background: white;
+
+    top: 3px;
+    left: 3px;
+
+    transition: .2s;
+}
+
+.toggleOn {
+    background: #3b82f6;
+}
+
+.toggleOn .toggleThumb {
+    left: 29px;
+}
+
+/* ===========================
+   REMINDERS
+=========================== */
+
+.reminderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addTimeBtn {
+    width: 44px;
+    height: 30px;
+
+    border-radius: 999px;
+
+    border: 1px solid var(--border);
+
+    background: #1f2430;
+    color: white;
+
+    cursor: pointer;
+}
+
+.timePills {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.timePill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    border: 1px solid var(--border);
+    background: #1f2430;
+}
+
+.timeInput {
+    border: none;
+    background: transparent;
+    color: white;
+}
+
+.removeTime {
+    border: none;
+    background: transparent;
+
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.reminderMsg {
+    width: 100%;
+    height: 40px;
+
+    border-radius: 10px;
+    border: 1px solid var(--border);
+
+    background: #1f2430;
+    color: white;
+
+    padding: 0 12px;
+}
+
+/* ===========================
+   CHART
+=========================== */
+
+.chartToggle {
+    display: flex;
+    gap: 8px;
+}
+
+.chartBtn {
+    width: 48px;
+    height: 34px;
+
+    border-radius: 10px;
+    border: 1px solid var(--border);
+
+    background: #1f2430;
+    color: white;
+
+    cursor: pointer;
+}
+
+.chartBtnActive {
+    background: #3b82f6;
+}
+
+/* ===========================
+   TERM
+=========================== */
+
+.termRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.termField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+    gap: 4px;
+}
+
+.termLabel {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.datePill {
+    width: 180px;
+    height: 38px;
+    padding: 0 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #1f2430;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* ===========================
+   SAVE
+=========================== */
+
+.saveWrap {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 20px;
+}
+
+.saveBtn {
+    min-width: 220px;
+    height: 46px;
+
+    border-radius: 999px;
+    border: none;
+
+    background: var(--main-color);
+    color: black;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+/* ===========================
+   DIALOG
+=========================== */
+/* ===========================
+   Dialog
+=========================== */
+
+.dialogOverlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+
+    backdrop-filter: blur(2px);
+}
+
+.dialog {
+    width: 420px;
+    max-width: 90vw;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow:
+            0 20px 50px rgba(0,0,0,.45);
+
+    animation: dialogIn .18s ease-out;
+}
+
+.dialogTitle {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.dialogBody {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dialogOption {
+    height: 48px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: #1f2430;
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 16px;
+
+    transition: .15s;
+}
+
+.dialogOption:hover {
+    border-color: var(--main-color);
+    background: rgba(255,255,255,.04);
+}
+
+.dialogOptionActive {
+    border-color: var(--main-color);
+    background: rgba(200,255,0,.12);
+    color: var(--main-color);
+}
+
+.dialogActions {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.dialogBtn {
+    height: 40px;
+    padding: 0 18px;
+
+    border-radius: 10px;
+    border: 1px solid var(--border);
+
+    background: #1f2430;
+    color: white;
+
+    cursor: pointer;
+}
+
+.dialogPrimary {
+    background: var(--main-color);
+    color: black;
+    border: none;
+}
+
+.clickDialog {
+    cursor: pointer;
+}
+
+@keyframes dialogIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 768px) {
+
+    .page {
+        padding: 16px;
+    }
+
+    .content,
+    .header {
+        max-width: 100%;
+    }
+
+    .detailGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .nameRow {
+        flex-direction: column;
+    }
+
+    .termRow {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .headerTitle {
+        font-size: 24px;
+    }
+}

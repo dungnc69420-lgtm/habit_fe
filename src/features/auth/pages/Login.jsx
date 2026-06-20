@@ -1,6 +1,6 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../context/AuthContext';
+import {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {useAuth} from '../../../context/AuthContext';
 import '../../../styles/Auth.css';
 
 const GoogleIcon = () => (
@@ -24,33 +24,23 @@ const GoogleIcon = () => (
     </svg>
 );
 
-interface LoginForm {
-    email: string;
-    password: string;
-}
-
-interface FormErrors {
-    email?: string;
-    password?: string;
-}
-
-export default function Login(): JSX.Element {
-    const { login } = useAuth();
+export default function Login() {
+    const {login} = useAuth();
     const navigate = useNavigate();
 
-    const [form, setForm] = useState<LoginForm>({
+    const [form, setForm] = useState({
         email: '',
         password: '',
     });
 
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [apiError, setApiError] = useState<string>('');
-    const [loading, setLoading] = useState<boolean>(false);
+    const [errors, setErrors] = useState({});
+    const [apiError, setApiError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const setField = (
-        key: keyof LoginForm,
-        value: string
-    ): void => {
+        key,
+        value
+    ) => {
         setForm(prev => ({
             ...prev,
             [key]: value,
@@ -64,8 +54,8 @@ export default function Login(): JSX.Element {
         setApiError('');
     };
 
-    const validate = (): FormErrors => {
-        const validationErrors: FormErrors = {};
+    const validate = () => {
+        const validationErrors = {};
 
         if (!form.email) {
             validationErrors.email = 'Email is required';
@@ -80,9 +70,7 @@ export default function Login(): JSX.Element {
         return validationErrors;
     };
 
-    const handleSubmit = async (
-        event: FormEvent<HTMLFormElement>
-    ): Promise<void> => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const validationErrors = validate();
@@ -96,8 +84,8 @@ export default function Login(): JSX.Element {
 
         try {
             await login(form.email, form.password);
-            navigate('/dashboard');
-        } catch (err: any) {
+            navigate('/habit-tracker');
+        } catch (err) {
             setApiError(
                 err?.message || 'Login failed'
             );
@@ -134,7 +122,7 @@ export default function Login(): JSX.Element {
                     onClick={handleGoogle}
                     type="button"
                 >
-                    <GoogleIcon />
+                    <GoogleIcon/>
                     Continue with Google
                 </button>
 
@@ -157,9 +145,7 @@ export default function Login(): JSX.Element {
                             type="email"
                             placeholder="you@example.com"
                             value={form.email}
-                            onChange={(
-                                e: ChangeEvent<HTMLInputElement>
-                            ) =>
+                            onChange={(e) =>
                                 setField(
                                     'email',
                                     e.target.value
@@ -189,9 +175,7 @@ export default function Login(): JSX.Element {
                             type="password"
                             placeholder="••••••••"
                             value={form.password}
-                            onChange={(
-                                e: ChangeEvent<HTMLInputElement>
-                            ) =>
+                            onChange={(e) =>
                                 setField(
                                     'password',
                                     e.target.value
@@ -218,7 +202,7 @@ export default function Login(): JSX.Element {
                     >
                         {loading ? (
                             <>
-                                <div className="spinner" />
+                                <div className="spinner"/>
                                 Logging in...
                             </>
                         ) : (
@@ -229,7 +213,7 @@ export default function Login(): JSX.Element {
 
                 <p className="auth-footer">
                     No account?{' '}
-                    <Link to="/register">
+                    <Link to="/src/features/auth/pages/Register">
                         Create one free
                     </Link>
                 </p>

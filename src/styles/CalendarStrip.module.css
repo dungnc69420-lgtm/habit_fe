@@ -1,0 +1,71 @@
+.strip {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+}
+
+.day {
+    min-width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 4px;
+    border-radius: 99px;
+    transition: background 0.15s;
+}
+
+.day:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.label {
+    font-size: 12px;
+    color: #aaa;
+    font-weight: 500;
+}
+
+.num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #bbb;
+    border: 1.5px solid transparent;
+    transition: all 0.15s;
+    font-weight: 500;
+}
+
+.past .num {
+    color: #ccc;
+}
+
+.done .num {
+    background: #FFE4E8;
+    color: #C9184A;
+    border-color: #FFB3C1;
+}
+
+.today .num {
+    border-color: #000;
+    color: #000;
+    background: var(--main-color);
+    font-weight: 500;
+}
+
+.selected .num {
+    background: transparent;
+    color: var(--main-color);
+    border-color: #c8ff00;
+}
+
+.selected .label {
+    color: var(--main-color);
+}

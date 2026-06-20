@@ -1,0 +1,343 @@
+.page {
+    max-width: 100%;
+    font-family: var(--font-sans, 'DM Sans', sans-serif);
+    background: #0a0a0a;
+    min-height: 100vh;
+    color: #f2f2f2;
+    padding-bottom: 60px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+.backBtn {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    color: #f2f2f2;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px 14px;
+    line-height: 1;
+    transition: background 0.15s;
+}
+
+.backBtn:hover {
+    background: #222;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f2f2f2;
+    letter-spacing: -0.02em;
+}
+
+.avatar {
+    font-size: 22px;
+    opacity: 0.6;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 8px;
+    padding: 20px 28px 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+}
+
+.tab:hover {
+    background: #222;
+    color: #aaa;
+    border-color: #333;
+}
+
+.tabActive {
+    background: rgba(200, 255, 0, 0.1) !important;
+    border-color: #c8ff00 !important;
+    color: #c8ff00 !important;
+}
+
+/* List */
+.list {
+    padding: 16px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #131313;
+    border-radius: 12px;
+    padding: 14px 18px;
+    border: 1px solid #1e1e1e;
+    transition: border-color 0.15s, background 0.15s;
+    cursor: pointer;
+}
+
+.item:hover {
+    background: #161616;
+    border-color: #2a2a2a;
+}
+
+.itemIcon {
+    font-size: 20px;
+    width: 28px;
+    text-align: center;
+}
+
+.itemName {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 400;
+    color: #e0e0e0;
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #666;
+    padding: 5px 10px;
+    transition: all 0.15s;
+    font-family: inherit;
+}
+
+.addBtn:hover {
+    border-color: #c8ff00;
+    color: #c8ff00;
+    background: rgba(200, 255, 0, 0.06);
+}
+
+.addBtnDone {
+    background: rgba(200, 255, 0, 0.1) !important;
+    border-color: #c8ff00 !important;
+    color: #c8ff00 !important;
+    font-weight: 600;
+    font-size: 14px;
+    width: 32px;
+    justify-content: center;
+}
+
+.heart {
+    font-size: 12px;
+}
+
+.plus {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+/* Custom */
+.customWrap {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.customBtn {
+    background: #c8ff00;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 36px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 24px rgba(200, 255, 0, 0.25);
+    transition: opacity 0.2s;
+    letter-spacing: -0.01em;
+}
+
+.customBtn:hover {
+    opacity: 0.88;
+}
+
+/* Modal */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 1rem;
+    backdrop-filter: blur(4px);
+}
+
+.modal {
+    background: #131313;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.modalTitle {
+    font-size: 17px;
+    font-weight: 700;
+    color: #f2f2f2;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.field label {
+    font-size: 11px;
+    color: #606060;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-family: 'DM Mono', monospace;
+}
+
+.field input, .field select {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #f2f2f2;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.field input::placeholder {
+    color: #404040;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: #c8ff00;
+}
+
+.field select {
+    background: #1a1a1a;
+}
+
+.field select option {
+    background: #1a1a1a;
+}
+
+.fieldRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.colorPicker {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.colorDot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s;
+    outline: none;
+}
+
+.colorDot:hover {
+    transform: scale(1.1);
+}
+
+.colorDotActive {
+    border-color: #c8ff00 !important;
+    transform: scale(1.15);
+}
+
+.modalActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancelBtn {
+    flex: 1;
+    padding: 11px;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    background: transparent;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.cancelBtn:hover {
+    border-color: #444;
+    color: #aaa;
+}
+
+.submitBtn {
+    flex: 1;
+    padding: 11px;
+    border: none;
+    border-radius: 10px;
+    background: #c8ff00;
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.2s;
+}
+
+.submitBtn:hover {
+    opacity: 0.88;
+}
