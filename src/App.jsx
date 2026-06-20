@@ -11,6 +11,8 @@ import HabitTracker from "./features/dashboard/pages/HabitTracker";
 import './App.css';
 import NewHabit from "./features/custom_habit/pages/NewHabit";
 import HabitDetail from "./features/custom_habit/pages/HabitDetail";
+import AppLayout from "./features/dashboard/pages/AppLayout";
+import './styles/global.css';
 
 export default function App() {
     return (
@@ -22,35 +24,23 @@ export default function App() {
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/oauth2/callback" element={<OAuth2Callback/>}/>
-                    {/*<Route path="/dashboard" element={<Dashboard/>}/>*/}
 
                     {/* Protected */}
                     <Route
-                        path="/habit-tracker/*"
                         element={
                             <ProtectedRoute>
-                                <HabitTracker/>
+                                <AppLayout />
                             </ProtectedRoute>
                         }
-                    />
-                    <Route
-                        path="/new-habit/*"
-                        element={
-                            <ProtectedRoute>
-                                <NewHabit/>
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path="/habit-detail/*"
-                        element={
-                            <ProtectedRoute>
-                                <HabitDetail/>
-                            </ProtectedRoute>
-                        }
-                    />
+                    >
+                        <Route path="/habit-tracker" element={<HabitTracker />} />
+                        <Route path="/new-habit" element={<NewHabit />} />
+                        <Route path="/habit-detail" element={<HabitDetail />} />
+                    </Route>
+
                     {/* Fallback */}
                     <Route path="*" element={<Navigate to="/" replace/>}/>
+
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

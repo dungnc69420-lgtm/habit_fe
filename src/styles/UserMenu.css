@@ -1,0 +1,136 @@
+.user-menu {
+    display: flex;
+    justify-content: center;
+}
+
+.user-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--main-color);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.user-avatar:hover {
+    opacity: 0.8;
+}
+
+
+/*.user-row {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    gap: 10px;*/
+/*    margin-left: 1rem;*/
+/*    margin-right: 1rem;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.user-avatar {*/
+/*    width: 34px;*/
+/*    height: 34px;*/
+/*    background: rgba(200, 255, 0, 0.15);*/
+/*    border-radius: 50%;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    font-size: 14px;*/
+/*    font-weight: 700;*/
+/*    color: #c8ff00;*/
+/*    text-transform: uppercase;*/
+/*    flex-shrink: 0;*/
+/*}*/
+
+/*.user-info {*/
+/*    min-width: 0;*/
+/*}*/
+
+/*.user-name {*/
+/*    font-size: 13px;*/
+/*    font-weight: 600;*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+
+/*.user-email {*/
+/*    font-size: 11px;*/
+/*    color: #606060;*/
+/*    font-family: 'DM Mono', monospace;*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+
+.dropdown-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    min-width: 180px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .35);
+    margin-right: 10px;
+}
+
+.dropdown-menu button {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+    background: var(--surface2);
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #282828;
+    border-radius: 8px;
+    color: var(--surface3);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.logout-btn:hover {
+    border-color: #ff3d57;
+    color: #ff3d57;
+}
+
+@media screen and (max-width: 700px) {
+    .user-menu {
+        width: 100%;
+    }
+
+    .user-row {
+        margin-left: 1.8rem;
+    }
+}
+
