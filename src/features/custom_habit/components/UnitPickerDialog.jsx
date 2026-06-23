@@ -34,7 +34,7 @@ export default function UnitPickerDialog({
 
     const selectUnit = (unit) => {
         return () => {
-            onSelect(unit);
+            onSelect(unit.symbol);
             onClose();
         };
     }
@@ -56,14 +56,14 @@ export default function UnitPickerDialog({
             <div className={styles.unitList}>
                 {filteredUnits.map(unit => {
 
-                    const isActive = value === unit.id;
+                    const isActive = value === unit.symbol;
 
                     return (
                         <button
                             key={unit.id}
                             type="button"
                             className={`${styles.unitOption}
-                            ${value === unit.id
+                            ${value === unit.symbol
                                 ? styles.unitOptionActive
                                 : ''}`
                             }

@@ -126,7 +126,7 @@ export default function GoalSection({
     const getGoalSummary = () => {
         const { goalValue, goalUnit, goalPeriod } = habit;
 
-        const prefix = `Complete ${goalValue} ${goalUnit?.symbol ?? ''}`;
+        const prefix = `Complete ${goalValue} ${goalUnit}`;
 
         if (goalPeriod === 'WEEKLY') {
             return hasWeekDays
@@ -292,13 +292,13 @@ export default function GoalSection({
                         className={styles.goalSelect}
                         onClick={() => setShowUnitDialog(true)}
                     >
-                        {habit.goalUnit?.symbol ?? 'min'}
+                        {habit.goalUnit}
                     </button>
 
                     <UnitPickerDialog
                         colors={colors}
                         open={showUnitDialog}
-                        value={habit.goalUnit?.id}
+                        value={habit.goalUnit}
                         onClose={() => setShowUnitDialog(false)}
                         onSelect={(unit) => onChange('goalUnit', unit)}
                     />

@@ -13,11 +13,7 @@ export default function NewHabit({onAdd}) {
         name: '',
         icon: '⭐',
         goalValue: 30,
-        goalUnit: {
-            id: "",
-            name: "Minutes",
-            symbol: "min"
-        },
+        goalUnit: 'min',
         color: 'blue'
     });
     const [categories, setCategories] = useState([]);
