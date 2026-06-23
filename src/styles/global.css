@@ -1,5 +1,8 @@
 :root {
-    --bg: #0a0a0a;
+    --bg: #0a0a0a; /* page background */
+    --card: #14141c; /* section card background */
+    --control-bg: #e8e8ec; /* light grey rows like "Color", "Habit Type" */
+    --control-text: #1a1a1a; /* text on light grey rows */
     --surface: #131313;
     --surface2: #1e1e28;
     --surface3: #606060;
@@ -7,7 +10,7 @@
     --accent: #6c63ff;
     --accent2: #ff6584;
     --accent3: #43e97b;
-    --text: #e8e8f0;
+    --text: #f5f5f7;
     --text-muted: #8888a8;
     --high: #ff6584;
     --medium: #ffb347;
@@ -21,4 +24,9 @@
     --font-head: 'Syne', sans-serif;
     --font-body: 'DM Sans', sans-serif, serif;
     --font-mono: 'DM Mono', monospace;
+
+    --text-dim: #8b8b96; /* secondary/muted text */
+    --pill-bg: #1c2333; /* dark pill backgrounds — time range, chart toggle */
+    --pill-text: #aab4d4; /* text inside pills */
+
 }

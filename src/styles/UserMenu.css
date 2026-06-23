@@ -10,7 +10,7 @@
     gap: 12px;
     background: transparent;
     border: none;
-    color: white;
+    color: var(--text);
     cursor: pointer;
     margin-left: 0.8rem;
     margin-right: 0.8rem;
@@ -99,7 +99,7 @@
     text-align: left;
     background: transparent;
     border: none;
-    color: white;
+    color: var(--text);
     cursor: pointer;
 }
 

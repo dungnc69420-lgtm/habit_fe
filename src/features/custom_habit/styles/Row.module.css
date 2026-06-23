@@ -1,0 +1,86 @@
+.row {
+    /* reset native <button> appearance */
+    appearance: none;
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    /* restore the original full-width row layout */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rowLeft {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rowLabel {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.rowValue {
+    font-size: 15px;
+    color: var(--muted);
+}
+
+.rowArrow {
+    color: var(--muted);
+    font-size: 28px;
+    line-height: 1;
+}
+
+.rowHint {
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .08);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.rowTight {
+    min-height: 36px;
+    padding: 4px 0;
+}
+
+.rowRight {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.row.noBorder {
+    border-bottom: none;
+}
+
+.rowClickable:hover {
+    opacity: 0.85;
+}
+
+.clickDialog {
+    cursor: pointer;
+}
+
+.row:focus-visible {
+    outline: 2px solid #ec4899;
+    outline-offset: 2px;
+    border-radius: 6px;
+}

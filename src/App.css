@@ -213,7 +213,7 @@ body {
 .add-btn {
     background: var(--accent);
     border: none;
-    color: white;
+    color: var(--text);
     padding: 0.7rem 1.25rem;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -340,7 +340,7 @@ body {
 .filter-btn.active {
     background: var(--accent);
     border-color: var(--accent);
-    color: white;
+    color: var(--text);
 }
 
 .badge {
@@ -607,7 +607,7 @@ body {
 .save-btn {
     background: var(--accent);
     border: none;
-    color: white;
+    color: var(--text);
     padding: 0.4rem 0.9rem;
     border-radius: 7px;
     font-size: 0.82rem;
